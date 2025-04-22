@@ -4,40 +4,31 @@ import time
 # Dados da instância Oracle Docker
 ADMIN_USER = "system"
 ADMIN_PASSWORD = "oracle"
-DSN = cx_Oracle.makedsn("localhost", 1521, service_name="XEPDB1")
-
-# Novo schema (usuário) da aplicação
-NEW_USER = "soil_user"
-NEW_PASS = "soil123"
+DSN = cx_Oracle.makedsn("oracle", 1521, service_name="freepdb1")
 
 print("⏳ Conectando ao Oracle Docker...")
 
-# Aguarda alguns segundos se container acabou de subir
-time.sleep(5)
+def wait_for_oracle(timeout=10):
+    for i in range(timeout + 1):
+        try:
+            conn = cx_Oracle.connect(ADMIN_USER, ADMIN_PASSWORD, DSN)
+            conn.close()
+            print("✅ Conexão com o Oracle estabelecida.")
+            return
+        except cx_Oracle.DatabaseError as e:
+            print(f"⏳ Tentativa {i+1}/{timeout}: Oracle ainda não está pronto... erro:", e)
+            time.sleep(1)
+    raise Exception(f"❌ O Oracle não está pronto após {timeout} segundos.")
+
+# Aguarda o Oracle estar pronto
+wait_for_oracle()
 
 try:
     conn = cx_Oracle.connect(ADMIN_USER, ADMIN_PASSWORD, DSN)
     cursor = conn.cursor()
 
-    # Criação do usuário (ignora se já existir)
-    try:
-        cursor.execute(f"CREATE USER {NEW_USER} IDENTIFIED BY {NEW_PASS}")
-        print(f"✅ Usuário {NEW_USER} criado.")
-    except cx_Oracle.DatabaseError as e:
-        if "ORA-01920" in str(e) or "ORA-01918" in str(e):
-            raise
-        print("ℹ️ Usuário já existe, seguindo...")
-
-    # Permissões básicas
-    cursor.execute(f"GRANT CONNECT, RESOURCE TO {NEW_USER}")
-    print("🔐 Permissões atribuídas.")
-
-    # Conecta com o novo usuário
-    user_conn = cx_Oracle.connect(NEW_USER, NEW_PASS, DSN)
-    user_cursor = user_conn.cursor()
-
-    # Criação da tabela
-    user_cursor.execute(
+    # Criação da tabela no schema SYSTEM
+    cursor.execute(
         """
         BEGIN
             EXECUTE IMMEDIATE '
@@ -57,12 +48,10 @@ try:
                     RAISE;
                 END IF;
         END;
-    """
+        """
     )
 
     print("📦 Tabela SoilSample criada (ou já existente).")
-    user_cursor.close()
-    user_conn.close()
     cursor.close()
     conn.close()
     print("✅ Setup finalizado com sucesso.")
