@@ -1,0 +1,102 @@
+Claro! Aqui está um prompt completo e detalhado para você enviar ao GitHub Copilot ou qualquer agente de IA para gerar o projeto da atividade:
+
+---
+
+🧠 **Prompt para o Copilot: Atividade Avaliativa FIAP — Análise de Qualidade do Solo em Python**
+
+> Crie um projeto em Python chamado `soil-quality-analyzer` voltado à **Análise de Qualidade do Solo**, atendendo os seguintes critérios da atividade avaliativa da FIAP:
+>
+> ---
+> 
+> 🎯 **Objetivo do Projeto:**  
+> Analisar amostras de solo com base nos parâmetros: `pH`, `Nitrogênio`, `Fósforo`, `Potássio` e `Compactação`.  
+> A avaliação deve indicar se a amostra está **Apta** ou **Inapta** para o plantio.
+>
+> Regras:
+> - Faixa ideal de cada parâmetro:
+>   - `pH`: entre 5.5 e 7.0
+>   - `Nitrogênio (N)`: maior que 20 ppm
+>   - `Fósforo (P)`: maior que 15 ppm
+>   - `Potássio (K)`: maior que 100 ppm
+>   - `Compactação`: menor que 1.4 g/cm³
+> - Se **4 ou mais parâmetros** estiverem dentro da faixa ideal, o solo é considerado **Apto**.
+>
+> ---
+> 
+> ✅ **Requisitos técnicos obrigatórios**:
+> 
+> 1. **Subalgoritmos (Funções/Procedimentos)**:
+>    - Função para avaliar a qualidade de uma amostra
+>    - Função para ler e validar entradas
+>    - Função para salvar relatório em arquivo `.txt`
+>
+> 2. **Estruturas de Dados**:
+>    - Lista ou tupla para armazenar amostras
+>    - Dicionário para representar uma amostra de solo
+>
+> 3. **Manipulação de Arquivos**:
+>    - Leitura de amostras simuladas de um arquivo `.json`
+>    - Escrita de relatório de resultados em `.txt`
+>
+> 4. **Conexão com Banco Oracle**:
+>    - Criar um script SQL separado (`oracle_connection.sql`) com estrutura para tabela:
+>      ```sql
+>      CREATE TABLE SoilSample (
+>        id NUMBER PRIMARY KEY,
+>        ph NUMBER(3,1),
+>        nitrogen NUMBER,
+>        phosphorus NUMBER,
+>        potassium NUMBER,
+>        compaction NUMBER(3,2),
+>        status VARCHAR2(10)
+>      );
+>      ```
+>    - Simular a conexão ou deixar um comentário com o trecho de código para inserção.
+>
+> ---
+> 
+> 📁 **Estrutura de pastas e arquivos esperada:**
+> ```
+> soil-quality-analyzer/
+> ├── main.py                  # Execução principal
+> ├── soil_utils.py            # Funções auxiliares de análise e validação
+> ├── samples.json             # Arquivo com 5 amostras simuladas
+> ├── report.txt               # Saída de relatório
+> ├── oracle_connection.sql    # Script SQL para banco Oracle
+> └── README.md                # Explicação do projeto
+> ```
+>
+> ---
+>
+> 🧪 Exemplo de entrada no `samples.json`:
+> ```json
+> [
+>   {
+>     "ph": 6.2,
+>     "nitrogen": 30,
+>     "phosphorus": 18,
+>     "potassium": 140,
+>     "compaction": 1.2
+>   },
+>   {
+>     "ph": 4.8,
+>     "nitrogen": 15,
+>     "phosphorus": 10,
+>     "potassium": 90,
+>     "compaction": 1.6
+>   }
+> ]
+> ```
+>
+> ---
+> 
+> 🧾 **README.md deve conter**:
+> - Objetivo do projeto
+> - Requisitos técnicos atendidos
+> - Como executar o programa
+> - Como testar e validar os dados
+> - Explicação da regra de avaliação do solo
+
+---
+
+Se quiser, posso revisar o código que o Copilot gerar e ajustar para garantir que tudo esteja 100%. Deseja isso também?
