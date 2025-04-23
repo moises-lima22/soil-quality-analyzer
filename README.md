@@ -68,13 +68,13 @@ soil-quality-analyzer/
 
 ## 🚀 Como Executar
 
-O projeto pode ser executado de duas formas: utilizando **Docker** (com banco de dados Oracle) ou manualmente (com banco simulado em JSON).
+O projeto é executado com docker e docker compose
 
-### 🐳 Opção 1: Executar com Docker (Banco de Dados Oracle)
+### 🐳 Executar com Docker (Banco de Dados Oracle)
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/soil-quality-analyzer.git
+   git clone https://github.com/moises-lima22/soil-quality-analyzer.git
    cd soil-quality-analyzer
    ```
 
@@ -91,51 +91,9 @@ O projeto pode ser executado de duas formas: utilizando **Docker** (com banco de
 
 ---
 
-### 🛠️ Opção 2: Executar Manualmente (Banco Simulado em JSON)
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/seu-usuario/soil-quality-analyzer.git
-   cd soil-quality-analyzer
-   ```
-
-2. Instale as dependências do backend:
-   ```bash
-   pip install -r backend/requirements.txt
-   ```
-
-3. Inicie o backend com o banco simulado em JSON:
-   ```bash
-   python backend/app.py
-   ```
-
-4. Instale as dependências do frontend:
-   ```bash
-   cd frontend
-   npm install
-   ```
-
-5. Inicie o frontend:
-   ```bash
-   npm run serve
-   ```
-
-6. Acesse o sistema no navegador:
-   - Frontend: [http://localhost:8080](http://localhost:8080)
-   - Backend (API): [http://localhost:5000](http://localhost:5000)
-
----
-
 ## ✅ Requisitos
 
-- **Opção 1 (Docker):**
-  - Docker e Docker Compose instalados
-
-- **Opção 2 (Manual):**
-  - Python 3.10+
-  - Node.js 18+
-  - `pip` para instalar dependências do backend
-  - `npm` para instalar dependências do frontend
+ - Docker e Docker Compose instalados
 
 ---
 
@@ -157,5 +115,3 @@ Além disso, os dados podem ser exportados para um arquivo `report.txt` no modo 
 RM563625 — FIAP 2025
 
 ---
-
-> Este projeto está alinhado à proposta de inovação tecnológica no Agronegócio, aplicando práticas de programação Python a desafios reais do setor, conforme solicitado na atividade avaliativa.
