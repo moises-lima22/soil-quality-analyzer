@@ -34,12 +34,12 @@ try:
             EXECUTE IMMEDIATE '
                 CREATE TABLE SoilSample (
                     id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-                    ph NUMBER(3,1),
-                    nitrogen NUMBER,
-                    phosphorus NUMBER,
-                    potassium NUMBER,
-                    compaction NUMBER(3,2),
-                    status VARCHAR2(10)
+                    ph NUMBER(5,2),
+                    nitrogen NUMBER(10,2), 
+                    phosphorus NUMBER(10,2), 
+                    potassium NUMBER(10,2), 
+                    compaction NUMBER(5,3),
+                    status VARCHAR2(10) -- Status do solo (Apto/Inapto)
                 )
             ';
         EXCEPTION

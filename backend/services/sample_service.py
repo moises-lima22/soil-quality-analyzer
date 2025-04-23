@@ -52,11 +52,9 @@ def validate_sample_data(data, is_update=False):
         if not status:
             status = evaluate_soil_status(numeric_data)
 
-        if not isinstance(status, str):
-            raise ValueError("Invalid data format. 'status' must be a string.")
         return {"status": "success", "data": {**numeric_data, "status": status}}
     except (ValueError, TypeError) as e:
-        return {"status": "error", "message": str(e)}
+        return {"status": "error", "message": f"Invalid data format: {str(e)}"}
 
 
 def add_sample(data):

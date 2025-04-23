@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     EvaluationChart: typeof import('./src/components/EvaluationChart.vue')['default']
+    ParameterDistributionChart: typeof import('./src/components/ParameterDistributionChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SampleForm: typeof import('./src/components/SampleForm.vue')['default']

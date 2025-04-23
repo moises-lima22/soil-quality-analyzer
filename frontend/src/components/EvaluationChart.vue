@@ -1,11 +1,8 @@
 <template>
   <v-card outlined>
     <v-card-title>Distribuição de Qualidade do Solo</v-card-title>
-    <v-card-text>
-      <canvas
-        ref="chartCanvas"
-        height="100"
-      ></canvas>
+    <v-card-text class="chart-container">
+      <canvas ref="chartCanvas"></canvas>
     </v-card-text>
   </v-card>
 </template>
@@ -47,6 +44,7 @@ function mountChart() {
     data,
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: {
           position: "bottom",
@@ -59,3 +57,15 @@ function mountChart() {
 watch(() => props.results, mountChart, { deep: true });
 onMounted(mountChart);
 </script>
+
+<style scoped>
+.chart-container {
+  position: relative;
+  height: 100%; /* Garante que o canvas ocupe toda a altura disponível */
+}
+
+canvas {
+  width: 100% !important; /* O canvas ocupa toda a largura */
+  height: 100% !important; /* O canvas ocupa toda a altura */
+}
+</style>
