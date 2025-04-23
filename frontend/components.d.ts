@@ -12,7 +12,6 @@ declare module 'vue' {
     ParameterDistributionChart: typeof import('./src/components/ParameterDistributionChart.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SampleForm: typeof import('./src/components/SampleForm.vue')['default']
     SampleTable: typeof import('./src/components/SampleTable.vue')['default']
   }
 }

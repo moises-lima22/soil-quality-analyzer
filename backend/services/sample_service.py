@@ -14,18 +14,21 @@ SAMPLES_FILE = "samples.json"
 def load_samples():
     try:
         rows = fetch_all_samples()
-        return {"status": "success", "data": [
-            {
-                "id": row[0],
-                "ph": row[1],
-                "nitrogen": row[2],
-                "phosphorus": row[3],
-                "potassium": row[4],
-                "compaction": row[5],
-                "status": row[6],
-            }
-            for row in rows
-        ]}
+        return {
+            "status": "success",
+            "data": [
+                {
+                    "id": row[0],
+                    "ph": row[1],
+                    "nitrogen": row[2],
+                    "phosphorus": row[3],
+                    "potassium": row[4],
+                    "compaction": row[5],
+                    "status": row[6],
+                }
+                for row in rows
+            ],
+        }
     except RuntimeError as e:
         return {"status": "error", "message": str(e)}
 
@@ -133,3 +136,22 @@ def evaluate_samples():
         return {"status": "success", "data": results}
     except RuntimeError as e:
         return {"status": "error", "message": str(e)}
+
+
+def save_report_to_txt(samples, filename="report.txt"):
+    try:
+        with open(filename, "w") as file:
+            file.write("Relatório de Análise de Solo\n")
+            file.write("=" * 30 + "\n")
+            for sample in samples:
+                file.write(f"ID: {sample['id']}\n")
+                file.write(f"pH: {sample['ph']}\n")
+                file.write(f"Nitrogênio: {sample['nitrogen']} ppm\n")
+                file.write(f"Fósforo: {sample['phosphorus']} ppm\n")
+                file.write(f"Potássio: {sample['potassium']} ppm\n")
+                file.write(f"Compactação: {sample['compaction']} g/cm³\n")
+                file.write(f"Status: {sample['status']}\n")
+                file.write("-" * 30 + "\n")
+        print(f"📄 Relatório salvo em {filename}")
+    except Exception as e:
+        print(f"❌ Erro ao salvar relatório: {e}")

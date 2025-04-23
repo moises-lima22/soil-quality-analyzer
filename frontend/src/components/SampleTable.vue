@@ -10,12 +10,20 @@
         class="w-100"
       >
         <span>Amostras Registradas</span>
-        <v-btn
-          color="primary"
-          @click="openAddModal"
-        >
-          <v-icon left>mdi-plus</v-icon> Adicionar
-        </v-btn>
+        <div>
+          <v-btn
+            color="primary"
+            @click="openAddModal"
+          >
+            <v-icon left>mdi-plus</v-icon> Adicionar
+          </v-btn>
+          <v-btn
+            color="secondary"
+            @click="downloadReportHandler"
+          >
+            <v-icon left>mdi-download</v-icon> Baixar Relatório
+          </v-btn>
+        </div>
       </v-row>
     </v-card-title>
     <v-data-table
@@ -144,6 +152,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { downloadReport } from "@/service/sampleService";
 
 defineProps({
   samples: {
@@ -229,5 +238,9 @@ function confirmDelete() {
   emit("delete", selectedSampleId.value);
   emit("reload");
   closeDeleteModal();
+}
+
+function downloadReportHandler() {
+  downloadReport();
 }
 </script>
