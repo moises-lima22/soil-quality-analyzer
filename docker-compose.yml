@@ -14,7 +14,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "echo 'SELECT 1 FROM DUAL;' | sqlplus -s system/oracle@localhost:1521/XEPDB1 || exit 1"
+          "echo 'SELECT 1 FROM DUAL;' | sqlplus -s system/oracle@localhost:1521/freepdb1 || exit 1"
         ]
       interval: 10s
       timeout: 5s

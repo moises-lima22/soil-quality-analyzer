@@ -3,11 +3,15 @@ import cx_Oracle
 # Dados do banco Oracle (Docker)
 USERNAME = "soil_user"
 PASSWORD = "soil123"
-DSN = cx_Oracle.makedsn("localhost", 1521, service_name="XEPDB1")
+DSN = cx_Oracle.makedsn("localhost", 1521, service_name="freepdb1")
 
 
 def get_connection():
-    return cx_Oracle.connect(USERNAME, PASSWORD, DSN)
+    return cx_Oracle.connect(
+        user="system",
+        password="oracle",
+        dsn="oracle-db:1521/freepdb1"
+    )
 
 
 def insert_sample(data, status):
